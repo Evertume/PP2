@@ -1,2 +1,0 @@
-print("ch")
-print("d")
