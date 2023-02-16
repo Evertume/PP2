@@ -8,4 +8,3 @@ def generate_random_number(seed):
         return 1
     else:
         return random_num
-print(generate_random_number(1))
