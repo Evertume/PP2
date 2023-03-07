@@ -4,4 +4,4 @@ def function(n):
         print(int((math.sqrt (n)+1)**2))
     else:
         print("-1")
-print(function(121))
+print(function(100))

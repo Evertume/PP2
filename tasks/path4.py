@@ -36,5 +36,5 @@ with open(file_path, "r") as f:
         # Handle the exception
             print('Please enter an integer')
         n=input("Write line number:")
-with open(file_path, 'w') as f:
+with open(file_path[:-3]+"5"+".py", 'a') as f:
     f.writelines(lines)
