@@ -51,7 +51,8 @@ def update_screen():
 
 # Call the update_screen function to display the initial screen
 update_screen()
-
+# Define variable for the ability to pause and unpause music
+Paused = False
 # Start the main loop
 running = True
 while running:
@@ -61,21 +62,32 @@ while running:
             pygame.quit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                # Play the music if userpressed 'space' button
-                pygame.mixer.music.play()
+                # Play, Pause or Unpause music according to the status if the user pressed 'space' button
+                if Paused:
+                    pygame.mixer.music.unpause()
+                    Paused = False
+                elif pygame.mixer.music.get_busy():
+                    pygame.mixer.music.pause()
+                    Paused = True
+                else:
+                    pygame.mixer.music.play()
+                    Paused = False
             elif event.key == pygame.K_s:
                 # Stop the music uf user pressed 's' button
                 pygame.mixer.music.stop()
-            elif event.key == pygame.K_n:
-                # Play the next music if user pressed 'n' button
+                Paused = False
+            elif event.key == pygame.K_RIGHT:
+                # Play the next music if user pressed 'right' button
                 current_music = (current_music + 1) % len(music_files)
                 pygame.mixer.music.load(music_files[current_music])
                 pygame.mixer.music.play()
-            elif event.key == pygame.K_p:
-                # Play the previous music if user pressed 'p' button
+                Paused = False
+            elif event.key == pygame.K_LEFT:
+                # Play the previous music if user pressed 'left' button
                 current_music = (current_music - 1) % len(music_files)
                 pygame.mixer.music.load(music_files[current_music])
                 pygame.mixer.music.play()
+                Paused = False
 
     # Update the screen
     update_screen()
