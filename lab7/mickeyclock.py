@@ -15,14 +15,14 @@ win = pygame.display.set_mode((800, 800))
 pygame.display.set_caption("Mickey's Clock")
 
 # Load the image of the clock face
-clock_face = pygame.image.load('mickey_clock.jpg').convert_alpha()
+clock_face = pygame.image.load('jpgFiles\mickey_clock.jpg').convert_alpha()
 clock_face = pygame.transform.smoothscale(clock_face, (800, 800))
 # Load the images of Mickey Mouse's hands
-minute_hand = pygame.image.load('mickey_right_hand.png').convert_alpha()
+minute_hand = pygame.image.load('pngFiles\mickey_right_hand.png').convert_alpha()
 minute_hand = pygame.transform.smoothscale(minute_hand, (400, 300))
 
 
-second_hand = pygame.image.load('mickey_left_hand.png').convert_alpha()
+second_hand = pygame.image.load('pngFiles\mickey_left_hand.png').convert_alpha()
 second_hand = pygame.transform.smoothscale(second_hand, (400, 400))
 
 

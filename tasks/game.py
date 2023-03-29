@@ -5,7 +5,7 @@ monitor = pygame.display.set_mode((1280,720))
 
 pygame.display.set_caption("PP2 pygame")
 
-pygame.display.set_icon(pygame.image.load("white_walker.png"))
+pygame.display.set_icon(pygame.image.load("pngFiles\white_walker.png"))
 check = True
 
 #square = pygame.Surface((60, 200))
@@ -13,10 +13,10 @@ check = True
 #font =pygame.font.Font("Lobster-Regular.ttf", 25)
 #text = font.render('PP2 game', False, 'Red')
 
-background = pygame.image.load("game_of_thrones.png").convert_alpha()
+background = pygame.image.load("pngFiles\game_of_thrones.png").convert_alpha()
 background = pygame.transform.smoothscale(background, (1280,720))
 
-sound = pygame.mixer.Sound("light_of_the_seven.mp3")
+sound = pygame.mixer.Sound("music\light_of_the_seven.mp3")
 sound.play()
 
 while check:

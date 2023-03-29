@@ -13,7 +13,7 @@ win = pygame.display.set_mode(win_size)
 
 pygame.display.set_caption("My game")
 score = 0
-font =pygame.font.Font("OpenSans.ttf", 36)
+font =pygame.font.Font("fonts\OpenSans.ttf", 36)
 score_position = [50, 50]
 
 while True:

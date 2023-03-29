@@ -8,7 +8,7 @@ secs = 0
 mins = 0
 hours = 0
 
-font = pygame.font.Font('OpenSansItalic.ttf', 80)
+font = pygame.font.Font('fonts\OpenSansItalic.ttf', 80)
 text = font.render("{}:{}:{}".format(hours, mins, secs), True, (255, 255, 255), (0, 0, 0))
 textRect = text.get_rect()
 textRect.center = 500 // 2, 500 // 2

@@ -12,10 +12,10 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 # Set the font
-FONT = pygame.font.Font('OpenSansItalic.ttf', 36)
+FONT = pygame.font.Font('fonts\OpenSansItalic.ttf', 36)
 
 # Load the music files
-music_files = ["Сулу_кыз.mp3", "No_Role_Modelz.mp3", "light_of_the_seven.mp3"]
+music_files = [r'music\Сулу_кыз.mp3', r'music\No_Role_Modelz.mp3', r'music\light_of_the_seven.mp3']
 
 # Set the current music index
 current_music = 0
@@ -42,7 +42,7 @@ def update_screen():
 
     # Draw the current music name on the screen and convert from snake case to more readable and delete '.mp3' format at the end
     music_name = music_files[current_music]
-    text = FONT.render(music_name.replace('_', ' ')[:-4], True, BLACK)
+    text = FONT.render(music_name[6: ].replace('_', ' ')[:-4], True, BLACK)
     text_rect = text.get_rect(center=(WINDOW_SIZE[0] // 2, 150))
     screen.blit(text, text_rect)
 
