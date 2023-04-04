@@ -16,7 +16,7 @@ playermoverate = 5
 count = 3
 coinspeed = 5
 coinsize = 8
-addnewcoinrate = 100
+addnewcoinrate = 200
 
 def terminate():
     pygame.quit()
