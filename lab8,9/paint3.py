@@ -102,6 +102,7 @@ while True:
                 spos = event.pos
             elif event.type == pygame.MOUSEMOTION:
                 if Draw:
+                    pos = event.pos
                     w1, h1 = spos
                     w2, h2 = pos
                     h = abs(h2 - h1)
@@ -116,11 +117,13 @@ while True:
                 spos = event.pos
             elif event.type == pygame.MOUSEMOTION:
                 if Draw:
+                    pos = event.pos
                     w1, h1 = spos
                     w2, h2 = pos
                     w3, h3 = (w1+w2) // 2, (h1+h2) // 2
                     w, h = abs(w2-w1), abs(h2-h1)
                     pygame.draw.polygon(sc, color,[(w3,h1), (w2,h3), (w3,h2), (w1,h3)], 0)
+                    pygame.display.update()
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 Draw = False
         if tool == 1:
