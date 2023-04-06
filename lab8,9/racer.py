@@ -1,4 +1,3 @@
-import datetime
 import pygame, random, sys, os, time
 from pygame.locals import *
 
@@ -102,6 +101,10 @@ while(count > 0):
 
     while True:
         score +=1
+        baddiespeed = random.randrange(baddieminspeed, baddiemaxspeed)
+        if coinscore >=10:
+            baddiespeed +=5
+            
         for event in pygame.event.get():
             if event.type == QUIT:
                 terminate()
@@ -153,17 +156,17 @@ while(count > 0):
             baddieAddCounter = 0
             baddieSize = 30
             newBaddie = {'rect': pygame.Rect(random.randint(20, 780), 0 - baddieSize, 23, 47),
-                         'speed': random.randint(baddieminspeed, baddiemaxspeed),
+                         'speed': baddiespeed,
                          'surface': pygame.transform.scale(random.choice(sample), (23, 47)),
                          }
             baddies.append(newBaddie)
             sideLeft = {'rect' : pygame.Rect(0, 0, 20, 800),
-                        'speed': random.randint(baddieminspeed, baddiemaxspeed),
+                        'speed': baddiespeed,
                         'surface': pygame.transform.scale(wallLeft, (23, 47))
                         }
             baddies.append(sideLeft)
             sideRight = {'rect': pygame.Rect(780, 0, 780, 800),
-                         'speed': random.randint(baddieminspeed, baddiemaxspeed),
+                         'speed': baddiespeed,
                          'surface': pygame.transform.scale(wallRight, (780, 800)),
                          }
             baddies.append(sideRight)
@@ -230,7 +233,7 @@ while(count > 0):
         mainClock.tick(fps)
         if playerHasHitCoins(playerRect, coins):
             coins.remove(c)
-            coinscore +=1
+            coinscore += random.randrange(1, 3)
 
     # "Game Over" screen
     pygame.mixer.music.stop()

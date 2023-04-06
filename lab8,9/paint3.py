@@ -6,7 +6,7 @@ sc.fill((255, 255, 255))
 pygame.display.flip()
 
 color = (0, 0, 0)
-rad = 10
+radius = 10
 Draw = False
 spos = None
 tool = 3
@@ -20,9 +20,9 @@ while True:
             exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_m:
-                rad -= 2
+                radius -= 2
             elif event.key == pygame.K_p:
-                rad += 2
+                radius += 2
             elif event.key == pygame.K_r:
                 color = (255, 0, 0)
             elif event.key == pygame.K_b:
@@ -79,14 +79,14 @@ while True:
             mouse_press = pygame.mouse.get_pressed()
             if mouse_press[0]:
                 mPos = pygame.mouse.get_pos()
-                pygame.draw.circle(sc, color, mPos, rad)
+                pygame.draw.circle(sc, color, mPos, radius)
                 pygame.display.flip()
 
         if tool == 4:
             mouse_press = pygame.mouse.get_pressed()
             if mouse_press[0]:
                 mPos = pygame.mouse.get_pos()
-                pygame.draw.circle(sc, (255, 255, 255), mPos, rad)
+                pygame.draw.circle(sc, (255, 255, 255), mPos, radius)
                 pygame.display.flip()
 
 
