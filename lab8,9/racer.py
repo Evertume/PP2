@@ -102,7 +102,7 @@ while(count > 0):
     while True:
         score +=1
         baddiespeed = random.randrange(baddieminspeed, baddiemaxspeed)
-        if coinscore >=10:
+        if coinscore >= 10:
             baddiespeed +=5
             
         for event in pygame.event.get():

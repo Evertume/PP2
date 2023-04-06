@@ -1,6 +1,4 @@
-import pygame
-import time
-import random
+import pygame, time, random
 
 snake_speed = 15
 snake_level = 1
@@ -34,6 +32,7 @@ snake_body = [[100, 50],
 fruit_position = [random.randrange(1, (window_x // 10)) * 10, 
                   random.randrange(1, (window_y // 10)) * 10]
 fruit_spawn = True
+fruit_timer = pygame.time.get_ticks()
 
 direction = 'RIGHT'
 change_to = direction
@@ -98,7 +97,7 @@ while True:
     # main mechaniks of the game
     snake_body.insert(0, list(snake_position))
     if snake_position[0] == fruit_position[0] and snake_position[1] == fruit_position[1]:
-        score += 10
+        score += (random.randrange(1, 4)*10)
         fruit_spawn = False
     else:
         snake_body.pop()
@@ -106,11 +105,14 @@ while True:
     if score >= snake_level*30:
         snake_level +=1
         snake_speed +=3
-
+    current_time = pygame.time.get_ticks()
+    if current_time - fruit_timer > 5000:
+        fruit_spawn = False
     if not fruit_spawn:
         fruit_position = [random.randrange(1, (window_x // 10)) * 10,
                           random.randrange(1, (window_y // 10)) * 10]
-    fruit_spawn = True
+        fruit_spawn = True
+        fruit_timer = pygame.time.get_ticks()
     game_window.fill(black)
 
     for pos in snake_body:
@@ -138,9 +140,3 @@ while True:
 
     # Frame per second/Refresh Rate
     fps.tick(snake_speed)
-
-    
-
-
-
-
