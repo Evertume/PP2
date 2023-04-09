@@ -31,21 +31,21 @@ while True:
                 color = (0, 0, 0)
             elif event.key == pygame.K_g:
                 color = (0, 255, 0)
-            elif event.key == pygame.K_c:
-                tool = 1
-            elif event.key == pygame.K_s:
-                tool = 2
-            elif event.key == pygame.K_f:
-                tool = 3
-            elif event.key == pygame.K_e:
-                tool = 4
             elif event.key == pygame.K_1:
-                tool = 5
+                tool = 1
             elif event.key == pygame.K_2:
-                tool = 6
+                tool = 2
             elif event.key == pygame.K_3:
-                tool = 7
+                tool = 3
             elif event.key == pygame.K_4:
+                tool = 4
+            elif event.key == pygame.K_5:
+                tool = 5
+            elif event.key == pygame.K_6:
+                tool = 6
+            elif event.key == pygame.K_7:
+                tool = 7
+            elif event.key == pygame.K_8:
                 tool = 8
             elif event.key == pygame.K_a:
                 sc.fill((255, 255, 255))
@@ -88,12 +88,10 @@ while True:
             elif event.type == pygame.MOUSEMOTION:
                 if Draw:
                     pos = event.pos
-
                     w1, h1 = spos
                     w2, h2 = pos
-                    w3, h3 = w2, h1
 
-                    pygame.draw.polygon(sc, color, [(w1, h1), (w2, h2), (w3, h3)], 0)
+                    pygame.draw.polygon(sc, color, [(w1, h1), (w1, h2), (w2, h2)], 0)
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 Draw = False
         if tool == 7:
@@ -105,10 +103,9 @@ while True:
                     pos = event.pos
                     w1, h1 = spos
                     w2, h2 = pos
-                    h = abs(h2 - h1)
-                    w = h * 2 / math.sqrt(3)
-                    w3, h3 = (w1+w2)/2, h1+h
-                    pygame.draw.polygon(sc, color, [(w1,h1), (w2,h2), (w3,h3)], 0)
+                    w3, h3 = (w1 + w2) // 2, h1 - int((w2 - w1) * math.sqrt(3) / 2)
+
+                    pygame.draw.polygon(sc, color, [(w1, h1), (w2, h2), (w3, h3)], 0)
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 Draw = False
         if tool == 8:
@@ -120,10 +117,9 @@ while True:
                     pos = event.pos
                     w1, h1 = spos
                     w2, h2 = pos
-                    w3, h3 = (w1+w2) // 2, (h1+h2) // 2
-                    w, h = abs(w2-w1), abs(h2-h1)
-                    pygame.draw.polygon(sc, color,[(w3,h1), (w2,h3), (w3,h2), (w1,h3)], 0)
-                    pygame.display.update()
+                    w3, h3 = (w1 + w2) // 2, (h1 + h2) // 2
+
+                    pygame.draw.polygon(sc, color, [(w1, h3), (w3, h2), (w2, h3), (w3, h1)], 0)
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 Draw = False
         if tool == 1:
