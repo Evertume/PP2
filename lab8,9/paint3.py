@@ -13,7 +13,6 @@ tool = 3
 
 f1 = pygame.font.SysFont(None, 30)
 
-
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -50,27 +49,28 @@ while True:
             elif event.key == pygame.K_a:
                 sc.fill((255, 255, 255))
                 pygame.display.update()
-
+        
         if tool == 2:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                layer2 = sc
                 Draw = True
                 spos = event.pos
-            elif event.type == pygame.MOUSEMOTION:
+            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 if Draw:
                     pos = event.pos
 
                     w = pos[0] - spos[0]
                     h = pos[1] - spos[1]
-
+                    
                     pygame.draw.rect(sc, color, (spos[0], spos[1], w, h))
                     pygame.display.update()
-            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 Draw = False
+                
         if tool == 5:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 Draw = True
                 spos = event.pos
-            elif event.type == pygame.MOUSEMOTION:
+            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 if Draw:
                     pos = event.pos
                     w = pos[0] - spos[0]
@@ -79,26 +79,25 @@ while True:
 
                     pygame.draw.rect(sc, color, (spos[0], spos[1], min(w, h), min(w, h)))
                     pygame.display.update()
-            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 Draw = False
         if tool == 6:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 Draw = True
                 spos = event.pos
-            elif event.type == pygame.MOUSEMOTION:
+            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 if Draw:
                     pos = event.pos
                     w1, h1 = spos
                     w2, h2 = pos
 
                     pygame.draw.polygon(sc, color, [(w1, h1), (w1, h2), (w2, h2)], 0)
-            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                    pygame.display.update()
                 Draw = False
         if tool == 7:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 Draw = True
                 spos = event.pos
-            elif event.type == pygame.MOUSEMOTION:
+            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 if Draw:
                     pos = event.pos
                     w1, h1 = spos
@@ -106,13 +105,13 @@ while True:
                     w3, h3 = (w1 + w2) // 2, h1 - int((w2 - w1) * math.sqrt(3) / 2)
 
                     pygame.draw.polygon(sc, color, [(w1, h1), (w2, h2), (w3, h3)], 0)
-            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                    pygame.display.update()
                 Draw = False
         if tool == 8:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 Draw = True
                 spos = event.pos
-            elif event.type == pygame.MOUSEMOTION:
+            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 if Draw:
                     pos = event.pos
                     w1, h1 = spos
@@ -120,13 +119,14 @@ while True:
                     w3, h3 = (w1 + w2) // 2, (h1 + h2) // 2
 
                     pygame.draw.polygon(sc, color, [(w1, h3), (w3, h2), (w2, h3), (w3, h1)], 0)
-            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                    pygame.display.update()
+
                 Draw = False
         if tool == 1:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 Draw = True
                 spos = event.pos
-            elif event.type == pygame.MOUSEMOTION:
+            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 if Draw:
                     pos = event.pos
 
@@ -135,7 +135,6 @@ while True:
 
                     pygame.draw.circle(sc, color, (spos[0], spos[1]), w//2)
                     pygame.display.update()
-            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 Draw = False
 
         if tool == 3:
