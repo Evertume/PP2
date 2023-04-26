@@ -1,4 +1,49 @@
-import pygame, time, random
+import pygame, time, random, psycopg2
+
+# Connect to the database
+conn = psycopg2.connect(database="mydb", user="postgres", password="030924550771", host="localhost", port="5433")
+cur = conn.cursor()
+
+# Create the tables if they don't exist
+cur.execute("CREATE TABLE IF NOT EXISTS users (username TEXT PRIMARY KEY, password TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS high_scores (username TEXT, score INTEGER)")
+
+# Prompt the user to log in or create a new account
+choice = input("Enter 'L' to login or 'R' to register: ")
+if choice.lower() == 'l':
+    # Prompt the user to log in
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+
+    # Check if the user exists and the password is correct
+    cur.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
+    result = cur.fetchone()
+    if result:
+        print("Login successful!")
+    else:
+        print("Invalid username or password")
+else:
+    # Prompt the user to create a new account
+    while True:
+        username = input("Enter a username: ")
+        password = input("Enter a password: ")
+        try:
+            cur.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
+            cur.execute("INSERT INTO high_scores (username, score) VALUES (%s, 0)", (username,))
+            conn.commit()
+            print("Account created!")
+            break
+        except psycopg2.IntegrityErrror:
+            print("Username already exists, please choose a different one")
+
+# Show the user's high score
+cur.execute("SELECT MAX(score) FROM high_scores WHERE username = %s", (username,))
+result = cur.fetchone()
+if result[0]:
+    print("Your high score is:", result[0])
+else:
+    print("You haven't achieved a high score yet")
+
 
 snake_speed = 15
 snake_level = 1
@@ -46,6 +91,10 @@ def show_score_and_level(choice, color, font, size):
     game_window.blit(score_surface, score_rect)
     
 def game_over():
+    if score > result[0]:
+        cur.execute("UPDATE high_scores SET score =%s WHERE username =%s", (score, username))
+        conn.commit()
+        print("New high score saved!")
     my_font = pygame.font.SysFont('times new roman', 50)
 
     game_over_surface = my_font.render('Your Score is : ' + str(score), True, red)
